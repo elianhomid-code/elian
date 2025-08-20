@@ -404,6 +404,15 @@ const BottomNavigation = ({ currentPath }) => {
 
 // مكون التطبيق الرئيسي
 function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
+// مكون محتوى التطبيق
+function AppContent() {
   const location = useLocation();
 
   return (
@@ -419,11 +428,4 @@ function App() {
   );
 }
 
-// مكون التطبيق مع BrowserRouter
-const AppWithRouter = () => (
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
-
-export default AppWithRouter;
+export default App;
