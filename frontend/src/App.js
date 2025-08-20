@@ -372,6 +372,7 @@ const SurahReader = ({ surah, onBack, isDarkMode, setIsDarkMode }) => {
 // مكون التنقل السفلي
 const BottomNavigation = ({ currentPath }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const navigate = useNavigate();
   
   const navItems = [
     { path: '/', icon: Home, label: 'الرئيسية' },
@@ -384,18 +385,18 @@ const BottomNavigation = ({ currentPath }) => {
     <div className={`fixed bottom-0 left-0 right-0 ${isDarkMode ? 'bg-slate-800' : 'bg-white'} border-t ${isDarkMode ? 'border-slate-700' : 'border-gray-200'} z-50`}>
       <div className="flex justify-around py-2">
         {navItems.map(({ path, icon: Icon, label }) => (
-          <a
+          <button
             key={path}
-            href={path}
+            onClick={() => navigate(path)}
             className={`flex flex-col items-center py-2 px-4 ${
               currentPath === path 
                 ? `${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}` 
                 : `${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`
-            } transition-colors duration-200`}
+            } transition-colors duration-200 hover:${isDarkMode ? 'text-emerald-300' : 'text-emerald-500'}`}
           >
             <Icon className="w-6 h-6 mb-1" />
             <span className="text-xs font-arabic">{label}</span>
-          </a>
+          </button>
         ))}
       </div>
     </div>
